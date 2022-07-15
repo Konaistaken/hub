@@ -1,0 +1,60 @@
+if game.PlaceId == 1962086868 then
+	getgenv().godmode = false
+	game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+		char:WaitForChild("KillScript").Disabled = getgenv().godmode
+	end)
+
+	getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.LocalScript).kick = function()
+		return; -- replaces kick function with a function that just returns
+	end
+
+
+	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+	OrionLib:MakeNotification({
+		Name = "Support",
+		Content = "Game Supported Welcome!",
+		Image = "rbxassetid://4483345998",
+		Time = 5
+	})
+
+
+	local Window = OrionLib:MakeWindow({Name = "Crown Hub", HidePremium = true, SaveConfig = true, ConfigFolder = "HassanHub"})
+
+	local MainTab = Window:MakeTab({
+		Name = "Main",
+		Icon = "rbxassetid://4483345998",
+		PremiumOnly = false
+	})
+
+	local CreditTab = Window:MakeTab({
+		Name = "Credit",
+		Icon = "rbxassetid://4483345998",
+		PremiumOnly = false
+	})
+
+	MainTab:AddToggle({
+		Name = "God Mode",
+		Default = false,
+		Callback = function(Value)
+			if Value == false then
+				Value = true
+				getgenv().godmode = true
+				char.KillScript.Disabled = getgenv().godmode
+			else
+				Value = false
+				getgenv().godmode = false
+				char.KillScript.Disabled = getgenv().godmode
+			end   
+	  end
+	})
+
+	MainTab:AddButton({
+		Name = "Infnite Jump",
+		Callback = function()
+			loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Infinite%20Jump.txt"))()
+		end    
+	})
+
+	CreditTab:AddLabel("Hassan")
+end
